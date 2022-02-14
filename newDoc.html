@@ -1,8 +1,14 @@
 <!doctype html>
+<h1><b>Writing Focus</b></h1>
 <html lang="en">
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-4beb8df8-1683-4a44-863b-cc7e2952cf07"></div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <a class="navbar-brand" href="#">Writing Focus</a>
+
+
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -10,6 +16,7 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
   <ul class="navbar-nav mr-auto">
+
     <li class="nav-item active">
       <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
     </li>
@@ -28,5 +35,15 @@
   </ul>
 </div>
 </nav>
-<h1><b>About Writing Focus</b></h1>
-  <h2>Our mission is to provide a seamless blog experience that prioritizes safety and anonymity above all. </h2>
+
+<select name="email" id="email" required>
+<option disabled selected value> - Choose a user - </option>
+<option value="email">aidan.cohen23@trinityschoolnyc.org</option>
+</select><br><br>
+
+<div class="lab"><label for="Title">Title:</label></div>
+<input type="text" id="Title" name="Title" required><br><br>
+<div class="lab"><label for="Text">Text:</label></div>
+<textarea id="Text" name="Text" rows="150" cols="120" required></textarea><br>
+<br>
+<input type="submit" value="Publish"> <span class="glyphicon glyphicon-level-up"></span>

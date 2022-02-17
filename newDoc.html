@@ -1,55 +1,109 @@
 <!doctype html>
 <h1><b>Writing Focus</b></h1>
 <html lang="en">
-<script src="https://apps.elfsight.com/p/platform.js" defer></script>
-<div class="elfsight-app-4beb8df8-1683-4a44-863b-cc7e2952cf07"></div>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <img src="download.png" width="40" height="40"></img>
-<a class="navbar-brand" href="#">Writing Focus</a>
+  <a class="navbar-brand" href="#">Writing Focus</a>
 
 
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-  <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto">
 
-    <li class="nav-item active">
-      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-    </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+      </li>
 
-    <li class="nav-item active">
-      <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
-    </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
+      </li>
 
-    <li class="nav-item active">
-      <a class="nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
-    </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
+      </li>
 
-    <li class="nav-item active">
-      <a class="nav-link" href="newDoc.html">New Doc <span class="sr-only">(current)</span></a>
-    </li>
-  </ul>
-</div>
+      <li class="nav-item active">
+        <a class="nav-link" href="newDoc.html">New Doc <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
 </nav>
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-4beb8df8-1683-4a44-863b-cc7e2952cf07"></div>
 <link href="about.css" rel="stylesheet">
 
-<div class = "container-fluid">
-  <br>
-<select name="email" id="email" required>
-<option disabled selected value> - Choose a user - </option>
-<option value="email">aidan.cohen23@trinityschoolnyc.org</option>
-</select><br><br>
+<div class="container-fluid">
 
-<div class="lab"><label for="Title">Title:</label></div>
-<input type="text" id="Title" name="Title" required><br><br>
-<div class="lab"><label for="Text">Text:</label></div>
-<textarea id="Text" name="Text" rows="150" cols="120" required></textarea><br>
-<br>
-<input type="submit" value="Publish"> <span class="glyphicon glyphicon-level-up"></span>
+  <br>
+  <select name="email" id="email" required>
+    <option disabled selected value> - Choose a user - </option>
+    <option value="email">aidan.cohen23@trinityschoolnyc.org</option>
+  </select><br><br>
+
+  <div class="lab"><label for="Title">Title:</label></div>
+  <input type="text" id="Title" name="Title" required><br><br>
+  <style>
+    .speech {
+      border: 1px solid #ddd;
+      width: 300px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .speech input {
+      border: 0;
+      width: 240px;
+      display: inline-block;
+      height: 30px;
+      font-size: 14px;
+    }
+
+    .speech img {
+      float: right;
+      width: 40px;
+    }
+  </style>
+
+  <form id="labnol" method="get" action="http://www.labnol.org">
+    <div class="speech">
+      <input type="text" name="s" id="transcript" placeholder="Speak your Writing!" />
+      <img onclick="startDictation()" src="https://i.imgur.com/cHidSVu.gif" />
+    </div>
+  </form>
+
+  <script>
+    function startDictation() {
+      if (window.hasOwnProperty('webkitSpeechRecognition')) {
+        var recognition = new webkitSpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        recognition.start();
+
+        recognition.onresult = function (e) {
+          document.getElementById('transcript').value = e.results[0][0].transcript;
+          recognition.stop();
+          document.getElementById('labnol').submit();
+        };
+        recognition.onerror = function (e) {
+          recognition.stop();
+        };
+      }
+    }
+  </script>
+  <br><br>
+  <div class="lab"><label for="Text">Write here:</label></div>
+  <textarea id="Text" name="Text" rows="150" cols="120" required></textarea><br>
+  <br>
+  <input type="submit" value="Publish"> <span class="glyphicon glyphicon-level-up"></span>
 </div>
+
 </html>

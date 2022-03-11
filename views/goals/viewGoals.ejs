@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<%- include('../partials/header.ejs'); %>
+  <section id="goals">
+    <div class="container-fluid">
+      <h2>Goals of the Essays</h2><br>
+      <div class="row justify-content-center">
+      <% for (goal of Object.values(goals)){%>
+      <div class="row">
+        <div class="col-12">
+          <hr>
+          <p><i>Essay:</i></p>
+            <%if(goal.Essay==""){%>
+                <p>N/A</p>
+              <%} else{%>
+                <p><%=goal.Essay%></p>
+              <%}%>
+            <p><%=goal.WordCount%></p>
+            <p><%=goal.TimeLimit%></p>
+        </div>
+      </div>
+      <%}%>
+  </div>
+<%- include('../partials/footer.ejs'); %>

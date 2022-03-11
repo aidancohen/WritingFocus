@@ -1,0 +1,12 @@
+{
+  "Goals-1": {
+    "Word-Count": "500",
+    "Time-Limit": "1:30:00",
+    "Essay": "Essay-1"
+  },
+  "Goals-2": {
+    "WordCount": "1200",
+    "TimeLimit": "4:45:00",
+    "Essay": "Essay-1"
+  }
+}

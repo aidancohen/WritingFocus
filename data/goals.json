@@ -1,0 +1,12 @@
+{
+  "Goals-1": {
+    "Type": "Word Count",
+    "Number": "500",
+    "TimeLimit": "1:30:00"
+  },
+  "Goals-2": {
+    "Type": "Paragraph Count",
+    "Number": "3",
+    "TimeLimit": "4:45:00"
+  }
+}

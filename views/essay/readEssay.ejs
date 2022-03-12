@@ -1,0 +1,25 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<%- include('../partials/header.ejs'); -%>
+<%- include('../partials/navbar.ejs'); -%>
+  <section id="posts">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h2><%=essay.Title%></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p><i><%=essay.Date%></p>
+        </div>
+      </div>
+        <% for (let i = 0; i<essay.Text.length; i++){%>
+          <div class="row">
+            <div class="col-12">
+              <p><%=essay.Text[i]%></p>
+            </div>
+          </div>
+        <%}%>
+  </div>
+<%- include('../partials/footer.ejs'); -%>

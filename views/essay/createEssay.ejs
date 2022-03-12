@@ -66,8 +66,9 @@
   <br><br>
   <h2>Goals:</h2>
   <% for (goal of Object.values(goals)){ %>
-    <p><b><%=goal.Type%>: </b><%=goal.Number%></p>
-    <p><b>Time Limit: </b><%=goal.TimeLimit%></p>
+    <p><b><%=goal.Title%>:</b></p>
+    <p><%=goal.Type%>: <%=goal.Number%></p>
+    <p>Time Limit: <%=goal.TimeLimit%></p>
   <%}%>
   <br><br>
   <form action="/essay/createEssay" method="POST">

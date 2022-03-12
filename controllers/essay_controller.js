@@ -31,11 +31,14 @@ let express = require('express'),
     router.get('/essay/:essayTitle', function(request, response){
       let essays = Essay.getAllEssays();
       let essayTitle = request.params.essayTitle;
+      let goals = Goals.getAllGoals();
+      let goalTitle = request.params.goalTitle;
       if (essays[essayTitle]){
         response.status(200);
         response.setHeader('Content-Type', 'text/html');
         response.render("essay/readEssay", {
           essay: essays[essayTitle]
+        //  goal: goals[goalsTitle]
         });
       } else {
         response.status(404);

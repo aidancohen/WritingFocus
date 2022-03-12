@@ -3,40 +3,28 @@ let express = require('express'),
     const fs = require('fs');
     let Goals = require('../models/goals_model');
 
-    router.get('/essay/createEssay', function(request, response) {
-      let goals = JSON.parse(fs.readFileSync('data/goals.json'));
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html');
-      response.render("essay/createEssay", {
-        Goals: goals
-      });
-    });
-
     router.get('/goals/createGoals', function(request, response) {
       response.status(200);
       response.setHeader('Content-Type', 'text/html');
       response.render("goals/createGoals");
     });
 
-    router.post('/goals/createGoals', function (request, response){
-      let goalsList = JSON.parse(fs.readFileSync('data/goals.json'));
-      let newGoals = {
-        "WordCount": request.body.Count.trim(),
-        "TimeLimit": request.body.Time.trim(),
-        "Essay": []
-      }
-      goalsList[newGoals['Goals']]=newGoals;
-      fs.writeFileSync('data/goals.json', JSON.stringify(goalsList));
-      response.redirect("/goals/createGoals")
+    router.post('/goals/createGoals', function(request, response) {
+      Goals.createGoal(request.body.Title.trim(), request.body.Type.trim(), request.body.Number.trim(), request.body.TimeLimit.trim());
+      response.redirect("/goals/createGoals");
     });
 
-    router.get('/goals/viewGoals', function(request, response){
-      let reviews = JSON.parse(fs.readFileSync("data/goals.json"));
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html');
-      response.render("goals/viewGoals", {
-        goals: goals
-      })
+    router.get('/goals/createGoals', function (request, response){
+      let goalsList = Goals.getAllGoals()
+      let newGoal = {
+        "Title": request.body.Title.trim(),
+        "Type": request.body.Type.trim(),
+        "Number": request.body.Number.trim(),
+        "TimeLimit": request.body.TimeLimit.trim()
+      }
+      goalsList[newGoal['Title']]=newGoal;
+      fs.writeFileSync('data/goals.json', JSON.stringify(goalsList));
+      response.redirect("/goals/createGoals")
     });
 
     module.exports = router;

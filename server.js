@@ -12,20 +12,10 @@ app.use(express.static('public')); //specify location of static assests
 app.set('views', __dirname + '/views'); //specify location of templates
 app.set('view engine', 'ejs'); //specify templating library
 
+app.use(require('./controllers/auth'));
+app.use(require('./controllers/index'));
 app.use(require('./controllers/essay_controller'));
 app.use(require('./controllers/goals_controller'));
-
-app.get('/', function(request, response) {
-  response.status(200);
-  response.setHeader('Content-Type', 'text/html');
-  response.render("about");
-});
-
-app.get('/home', function(request, response) {
-  response.status(200);
-  response.setHeader('Content-Type', 'text/html');
-  response.render("index");
-});
 
 app.use("", function(request, response) {
   response.redirect('/error?code=400');

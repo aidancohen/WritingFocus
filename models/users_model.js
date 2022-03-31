@@ -37,9 +37,7 @@ exports.createPlayer =  function (playerID, playerDisplayName){
   if(!allPlayers[playerID]){
     let newPlayer={
       "displayName": playerDisplayName,
-      "essays": [],
-      "goals": [],
-      "dateJoined": new Date()
+      "email": playerID
     }
     allPlayers[playerID] = newPlayer;
     fs.writeFileSync(__dirname+'/../data/users.json', JSON.stringify(allPlayers));

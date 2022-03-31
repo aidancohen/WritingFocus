@@ -7,9 +7,8 @@ const KEYS = require('../config/keys.json');
 //keeping our secrets out of our main application is a security best practice
 //we can add /config/keys.json to our .gitignore file so that we keep it local/private
 
+const User = require('../models/users_model.js');
 let userProfile; //only used if you want to see user info beyond username
-
-const User = require('../models/users_model');
 
 router.use(session({
   resave: false,
@@ -46,7 +45,7 @@ passport.deserializeUser(function(obj, cb) {
 */
 router.get('/auth/google',
   passport.authenticate('google', {
-    scope: ['email']
+    scope: ['email', 'profile']
   }));
 
 /*
@@ -57,14 +56,12 @@ router.get('/auth/google/callback',
     failureRedirect: '/error?code=401'
   }),
   function(request, response) {
-    console.log(userProfile);
-    response.redirect('/');
+    User.createPlayer(request.user._json.email, request.user._json.name);//only creates if not in players.json
+    response.redirect('/essay/displayEssays');
   });
 
 router.get("/auth/logout", (request, response) => {
   request.logout();
-  let userID = request.user._json.email;
-  User.createPlayer(userID, userID.split('.')[0]);//only creates if not in players.json
   response.redirect('/');
 });
 

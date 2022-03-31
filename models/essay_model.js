@@ -28,12 +28,13 @@ exports.getEssay =  function(essayID) {
   return {};
 }
 
-exports.createEssay = function(title, text){
+exports.createEssay = function(title, text, userEmail){
   let essays = exports.getAllEssays();
   let date = new Date();
   let month = date.getMonth()+1
   let newEssay = {
     "Date": month.toString() + "/" + date.getDate().toString() + "/" + date.getFullYear().toString(),
+    "Author": userEmail,
     "Title": title,
     "Link": title.split(" ").join("-"),
     "Text": text.split(/\r?\n/)
@@ -42,9 +43,9 @@ exports.createEssay = function(title, text){
   fs.writeFileSync('data/essay.json', JSON.stringify(essays));
 }
 
-exports.updateEssay = function(oldTitle, newTitle, text){
+exports.updateEssay = function(oldTitle, newTitle, text, userEmail){
   exports.deleteEssay(oldTitle);
-  exports.createEssay(newTitle, text);
+  exports.createEssay(newTitle, text, userEmail);
 }
 
 exports.deleteEssay = function(title){

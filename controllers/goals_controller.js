@@ -10,21 +10,8 @@ let express = require('express'),
     });
 
     router.post('/goals/createGoals', function(request, response) {
-      Goals.createGoal(request.body.Title.trim(), request.body.Type.trim(), request.body.Number.trim(), request.body.TimeLimit.trim());
+      Goals.createGoal(request.body.Title.trim(), request.body.Type.trim(), request.body.Number.trim(), request.body.TimeLimit.trim(), request.user._json.email);
       response.redirect("/goals/createGoals");
-    });
-
-    router.get('/goals/createGoals', function (request, response){
-      let goalsList = Goals.getAllGoals()
-      let newGoal = {
-        "Title": request.body.Title.trim(),
-        "Type": request.body.Type.trim(),
-        "Number": request.body.Number.trim(),
-        "TimeLimit": request.body.TimeLimit.trim()
-      }
-      goalsList[newGoal['Title']]=newGoal;
-      fs.writeFileSync('data/goals.json', JSON.stringify(goalsList));
-      response.redirect("/goals/createGoals")
     });
 
     module.exports = router;

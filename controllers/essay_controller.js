@@ -3,28 +3,45 @@ let express = require('express'),
     const fs = require('fs');
     const Essay = require('../models/essay_model');
     const Goals = require('../models/goals_model');
+    const User = require('../models/users_model');
+
+    router.get('/', function(request, response){
+      response.redirect('/auth/google');
+    });
 
     router.get('/essay/createEssay', function(request, response){
-      let goals = Goals.getAllGoals();
+      let goals = Goals.getArrayGoals();
+      let personalGoals = [];
+      for (let i = 0; i<goals.length; i++){
+        if (goals[i].Author == request.user._json.email){
+          personalGoals.push(goals[i]);
+        }
+      }
       response.status(200);
       response.setHeader('Content-Type', 'text/html');
       response.render("essay/createEssay", {
-        goals: goals
+        goals: personalGoals
       });
     });
 
     router.get('/essay/displayEssays', function(request, response){
       let essays = Essay.getSortedEssays();
+      let personalEssays = [];
+      for (let i = 0; i<essays.length; i++){
+        if (essays[i].Author == request.user._json.email){
+          personalEssays.push(essays[i]);
+        }
+      }
       response.status(200);
       response.setHeader('Content-Type', 'text/html');
       response.render("essay/displayEssays", {
-        essays: essays
+        essays: personalEssays
       })
     }
     )
 
     router.post('/essay/createEssay', function(request, response) {
-      Essay.createEssay(request.body.Title.trim(), request.body.Text.trim());
+      Essay.createEssay(request.body.Title.trim(), request.body.Text.trim(), request.user._json.email);
       response.redirect("/essay/createEssay");
     });
 
@@ -73,7 +90,7 @@ let express = require('express'),
       console.log("yes");
       if (essays[essayTitle]){
 
-        Essay.updateEssay(essayTitle, request.body.Title.trim(), request.body.Text.trim());
+        Essay.updateEssay(essayTitle, request.body.Title.trim(), request.body.Text.trim(), request.user._json.email);
         response.redirect('/essay/displayEssays');
       }
     });

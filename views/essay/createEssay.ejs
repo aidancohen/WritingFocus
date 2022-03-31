@@ -7,7 +7,6 @@
 <%-include('../partials/navbar') -%>
 <link rel="stylesheet" href="/css/timer.css">
 <script src="/js/timer.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/css/about.css">
 
 <div class="container-fluid">
@@ -53,25 +52,26 @@
         recognition.lang = 'en-US';
         recognition.start();
 
-        recognition.onresult = function (e) {
+        recognition.onresult = function(e) {
           document.getElementById('transcript').value = e.results[0][0].transcript;
           recognition.stop();
           document.getElementById('labnol').submit();
         };
-        recognition.onerror = function (e) {
+        recognition.onerror = function(e) {
           recognition.stop();
         };
       }
     }
   </script>
   <br><br>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <div class="timer"></div>
   <br><br>
   <h2>Goals:</h2>
   <% for (goal of Object.values(goals)){ %>
-    <p><b><%=goal.Title%>:</b></p>
-    <p><%=goal.Type%>: <%=goal.Number%></p>
-    <p>Time Limit: <%=goal.TimeLimit%></p>
+  <p><b><%=goal.Title%>:</b></p>
+  <p><%=goal.Type%>: <%=goal.Number%></p>
+  <p>Time Limit: <%=goal.TimeLimit%></p>
   <%}%>
   <br><br>
   <form action="/essay/createEssay" method="POST">

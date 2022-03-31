@@ -1,1 +1,16 @@
-{"5":{"Author":"aidan.cohen23@trinityschoolnyc.org","Title":"5","Type":"5","Number":"5","TimeLimit":"5"},"8":{"Author":"aidan.cohen23@trinityschoolnyc.org","Title":"8","Type":"8","Number":"8","TimeLimit":"8"},"Goal-A":{"Author":"justin.gohde@trinityschoolnyc.org","Title":"Goal A","Type":"Word Count","Number":"300","TimeLimit":"1 hr"},"brennan":{"Author":"aidan.cohen23@trinityschoolnyc.org","Title":"brennan","Type":"paragraph count","Number":"5","TimeLimit":"1 hr"}}
+{
+  "8": {
+    "Author": "aidan.cohen23@trinityschoolnyc.org",
+    "Title": "Goal 1",
+    "Type": "Thesis",
+    "Number": "Complete",
+    "TimeLimit": "20min"
+  },
+  "Goal-A": {
+    "Author": "justin.test1@trinityschoolnyc.org",
+    "Title": "Goal A",
+    "Type": "Word Count",
+    "Number": "300",
+    "TimeLimit": "1 hr"
+  }
+}
